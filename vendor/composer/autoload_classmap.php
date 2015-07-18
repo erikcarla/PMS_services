@@ -18,6 +18,7 @@ return array(
     'GrantsTableSeeder' => $vendorDir . '/lucadegasperi/oauth2-server-laravel/seeds/GrantsTableSeeder.php',
     'IlluminateQueueClosure' => $vendorDir . '/illuminate/queue/IlluminateQueueClosure.php',
     'Illuminate\\Foundation\\Composer' => $vendorDir . '/laravel/lumen-framework/src/Foundation/Composer.php',
+    'MsuserSeeder' => $baseDir . '/database/seeds/MsuserSeeder.php',
     'OAuthSeeder' => $baseDir . '/database/seeds/OauthSeeder.php',
     'PHPUnit_Exception' => $vendorDir . '/phpunit/phpunit/src/Exception.php',
     'PHPUnit_Extensions_GroupTestSuite' => $vendorDir . '/phpunit/phpunit/src/Extensions/GroupTestSuite.php',
