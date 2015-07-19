@@ -19,14 +19,12 @@ $app = new Laravel\Lumen\Application(
 	realpath(__DIR__.'/../')
 );
 
-// $app->withFacades();
-
-// $app->withEloquent();
 
 $app->configure('app');
 $app->configure('secrets');
 class_alias('Illuminate\Support\Facades\Config', 'Config');
 $app->withFacades();
+$app->withEloquent();
 
 /*
 |--------------------------------------------------------------------------
@@ -72,14 +70,15 @@ $app->singleton(
 
 // ]);
 $app->middleware([
-    'LucaDegasperi\OAuth2Server\Middleware\OAuthExceptionHandlerMiddleware'
+    'LucaDegasperi\OAuth2Server\Middleware\OAuthExceptionHandlerMiddleware',
+    'App\Http\Middleware\CORS',
 ]);
 
 $app->routeMiddleware([
     'check-authorization-params' => 'Optimus\OAuth2Server\Middleware\CheckAuthCodeRequestMiddleware',
     'csrf' => 'Laravel\Lumen\Http\Middleware\VerifyCsrfToken',
     'oauth' => 'Optimus\OAuth2Server\Middleware\OAuthMiddleware',
-    'oauth-owner' => 'Optimus\OAuth2Server\Middleware\OAuthOwnerMiddleware'
+    'oauth-owner' => 'Optimus\OAuth2Server\Middleware\OAuthOwnerMiddleware',
 ]);
 
 /*

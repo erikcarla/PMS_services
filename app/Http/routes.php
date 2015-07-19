@@ -11,10 +11,6 @@
 |
 */
 
-$app->get('/', function() use ($app) {
-    return $app->welcome();
-});
-
 $app->post('login', function() use($app) {
     $credentials = app()->make('request')->input("credentials");
     return $app->make('App\Auth\Proxy')->attemptLogin($credentials);
@@ -30,15 +26,9 @@ $app->post('refresh-token', function() use($app) {
 
 $app->group(['middleware' => 'oauth'], function($app)
 {
-    $app->get('resource', function() {
-        return response()->json([
-            "id" => 1,
-            "name" => "A resource"
-        ]);
-    });
+	resource('user', 'UserController');
 });
 
-resource('template', 'TemplateController');
 
 function resource($uri, $controller)
 {
