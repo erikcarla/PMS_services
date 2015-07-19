@@ -28,7 +28,7 @@ $app->post('refresh-token', function() use($app) {
     return $app->make('App\Auth\Proxy')->attemptRefresh();
 });
 
-$app->group(['prefix' => 'api', 'middleware' => 'oauth'], function($app)
+$app->group(['middleware' => 'oauth'], function($app)
 {
     $app->get('resource', function() {
         return response()->json([
@@ -50,3 +50,4 @@ function resource($uri, $controller)
 	$app->put($uri.'/{id}', 'App\Http\Controllers\\'.$controller.'@update');
 	$app->delete($uri.'/{id}', 'App\Http\Controllers\\'.$controller.'@destroy');
 }
+
