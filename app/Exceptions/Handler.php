@@ -2,6 +2,8 @@
 
 use Exception;
 use Laravel\Lumen\Exceptions\Handler as ExceptionHandler;
+use Symfony\Component\HttpKernel\Exception\MethodNotAllowedHttpException;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class Handler extends ExceptionHandler {
 
@@ -36,6 +38,10 @@ class Handler extends ExceptionHandler {
      */
     public function render($request, Exception $e)
     {
+        if ($e instanceof NotFoundHttpException)
+            return response(array('error' => 'true'), 404);
+        if ($e instanceof MethodNotAllowedHttpException)
+            return response(array('error' => 'true'), 405);
         return parent::render($request, $e);
     }
 
